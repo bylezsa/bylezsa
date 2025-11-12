@@ -1,0 +1,14 @@
+:root {
+  --color-primary: #6A1F1F;    /* Borgoña – Pasión Sofisticada */
+  --color-secondary: #D8C3A5;  /* Beige – Equilibrio y Suavidad */
+  --color-light: #F5F1CA;      /* Marfil – Limpieza Visual */
+  --color-dark: #1E1E1E;
+  --color-text: #2B2B2B;
+  --color-bg: #FFFDF8;
+}
+
+.dark {
+  --color-primary: #D8C3A5;
+  --color-bg: #1A1A1A;
+  --color-text: #EAEAEA;
+}
