@@ -76,11 +76,14 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider value={{
-      items, addItem, updateQty, removeItem, clear,
+      cart: items, 
+      items,
+      addItem, updateQty, removeItem, clear,
       totalCents, itemCount, loading, createOrder, buildWhatsAppText
     }}>
       {children}
     </CartContext.Provider>
+
   );
 }
 
