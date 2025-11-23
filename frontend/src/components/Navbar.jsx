@@ -7,92 +7,87 @@ import '../styles/Navbar.css';
 
 export default function Navbar({ dark, setDark }) {
   const { user, logout } = useAuth();
-  const { cart } = useCart() || { cart: [] }; // Previene error si cart es undefined
+  const { cart } = useCart() || { cart: [] };
   const [open, setOpen] = useState(false);
   const location = useLocation();
-
-  const navLinks = [
-    { to: '/', label: 'Inicio' },
-    { to: '/cart', label: 'Carrito' },
-    { to: '/profile', label: 'Perfil', auth: true },
-    { to: '/login', label: 'Ingresar', guest: true },
-    { to: '/register', label: 'Registrarse', guest: true },
-  ];
 
   const handleLogout = () => {
     logout();
     toast.success('Sesión cerrada correctamente');
   };
 
+  const navLinks = [
+    { to: '/', label: 'Inicio' },
+    { to: '/cart', label: 'Carrito' },
+    { to: '/profile', label: 'Perfil', auth: true },
+  ];
+
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        {/* LOGO */}
-        <Link to="/" className="navbar-logo">
-          <span className="logo-badge">AA</span>
-          <span className="logo-text">Store</span>
-        </Link>
-
-        {/* BOTÓN HAMBURGUESA */}
-        <button
-          onClick={() => setOpen(!open)}
-          className={`menu-toggle ${open ? 'open' : ''}`}
-          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-        >
-          <span className="bar" />
-          <span className="bar" />
-          <span className="bar" />
-        </button>
-
-        {/* LINKS */}
-        <div className={`menu ${open ? 'menu-open' : ''}`}>
-          {navLinks.map((link, i) => {
+    <header className="navbar">
+     {/* === Primera barra (links y menú) === */}
+      <div className="nav-top">
+        <div className="nav-links">
+          {navLinks.map((link) => {
             if ((link.auth && !user) || (link.guest && user)) return null;
-
-            const isActive = location.pathname === link.to;
-
-            if (link.to === '/cart') {
-              return (
-                <Link
-                  key={i}
-                  to={link.to}
-                  className={`nav-link ${isActive ? 'active' : ''}`}
-                >
-                  🛒 {link.label}
-                  {cart?.length > 0 && (
-                    <span className="cart-badge">{cart.length}</span>
-                  )}
-                </Link>
-              );
-            }
-
             return (
               <Link
-                key={i}
+                key={link.to}
                 to={link.to}
-                className={`nav-link ${isActive ? 'active' : ''}`}
+                className={`nav-link ${location.pathname === link.to ? 'active' : ''}`}
               >
+                {link.label}
+                {link.to === '/cart' && cart.length > 0 && (
+                  <span className="cart-badge">{cart.length}</span>
+                )}
+              </Link>
+            );
+          })}
+          {user ? (
+            <button onClick={handleLogout} className="nav-button logout">Salir</button>
+          ) : (
+            <>
+              <Link to="/login" className="nav-button">Ingresar</Link>
+              <Link to="/register" className="nav-button secondary">Registrarse</Link>
+            </>
+          )}
+
+          <button onClick={() => setOpen(!open)} className="nav-menu-button">
+            ☰
+          </button>
+        </div>
+
+      </div>
+
+
+      {/* === Segunda barra (logo centrado) === */}
+      <div className="nav-bottom">
+        <Link to="/" className="nav-logo">
+          <span className="nav-logo-mark">AA</span>
+          <span className="nav-logo-text">Store</span>
+        </Link>
+      </div>
+
+      {/* Menú móvil */}
+      {open && (
+        <div className="nav-mobile">
+          {navLinks.map((link) => {
+            if ((link.auth && !user) || (link.guest && user)) return null;
+            return (
+              <Link key={link.to} to={link.to} className="nav-link-mobile">
                 {link.label}
               </Link>
             );
           })}
-
-          {user && (
-            <button onClick={handleLogout} className="btn-logout">
-              Salir
-            </button>
+          {user ? (
+            <button onClick={handleLogout} className="nav-link-mobile">Salir</button>
+          ) : (
+            <>
+              <Link to="/login" className="nav-link-mobile">Ingresar</Link>
+              <Link to="/register" className="nav-link-mobile">Registrarse</Link>
+            </>
           )}
-
-          {/* TOGGLE MODO OSCURO */}
-          <button
-            onClick={() => setDark((d) => !d)}
-            className="btn-darkmode"
-            aria-label="Cambiar modo"
-          >
-            {dark ? '🌙' : '☀️'}
-          </button>
         </div>
-      </div>
-    </nav>
+      )}
+    </header>
   );
 }

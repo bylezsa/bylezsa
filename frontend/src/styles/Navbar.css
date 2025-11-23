@@ -1,195 +1,187 @@
-/* ===== NAVBAR GENERAL ===== */
+/* === Estructura general === */
 .navbar {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.85);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  z-index: 50;
-  transition: background 0.3s ease, color 0.3s ease;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--nav-bg);
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
-.dark .navbar {
-  background: rgba(17, 24, 39, 0.85);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-/* ===== CONTENEDOR ===== */
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+/* === Primera barra (links + botones) === */
+.nav-top {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* ===== LOGO ===== */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  font-weight: 800;
-  font-size: 1.5rem;
-  color: #ec4899;
-  text-decoration: none;
-}
-
-.logo-badge {
-  background: #fce7f3;
-  color: #db2777;
-  border-radius: 9999px;
-  padding: 0.25rem 0.75rem;
-  font-weight: 900;
-  margin-right: 6px;
-}
-
-.dark .logo-badge {
-  background: #374151;
-  color: #f9a8d4;
-}
-
-/* ===== MENU ===== */
-.menu {
+.nav-links {
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: all 0.3s ease-in-out;
+  flex-wrap: wrap;
 }
 
-.menu a,
-.menu button {
-  text-decoration: none;
-  color: #374151;
+/* === Links === */
+.nav-link {
+  font-size: 0.95rem;
   font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* === Badge de carrito === */
+.cart-badge {
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  padding: 0 6px;
+  margin-left: 4px;
+}
+
+/* === Botones === */
+.nav-button {
+  border: 1px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  border-radius: 9999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nav-button:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* Secundario */
+.nav-button.secondary {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+.nav-button.secondary:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+/* Logout */
+.nav-button.logout {
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+}
+.nav-button.logout:hover {
+  background: var(--danger-color);
+  color: #fff;
+}
+
+/* === Botón menú hamburguesa (solo móvil) === */
+.nav-menu-button {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  margin-left: 0.75rem;
+  display: none;
+}
+.nav-menu-button:hover {
+  color: var(--primary-color);
+}
+
+/* === Segunda barra (logo centrado) === */
+.nav-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.3rem 0;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  padding: 0.45rem 0.7rem;
+}
+
+.nav-logo-text {
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+}
+
+/* === Menú móvil desplegable === */
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--nav-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 0;
+  animation: slideDown 0.25s ease;
+}
+
+.nav-link-mobile {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
   transition: color 0.2s ease;
 }
 
-.menu a:hover {
-  color: #ec4899;
+.nav-link-mobile:hover {
+  color: var(--primary-color);
 }
 
-.dark .menu a {
-  color: #e5e7eb;
-}
-
-.dark .menu a:hover {
-  color: #f472b6;
-}
-
-/* ===== CARRITO BADGE ===== */
-.cart-badge {
-  background: #ec4899;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 9999px;
-  padding: 0.15rem 0.45rem;
-  margin-left: 4px;
-  position: relative;
-  top: -2px;
-}
-
-/* ===== BOTÓN LOGOUT ===== */
-.btn-logout {
-  background: #ec4899;
-  color: white;
-  border: none;
-  border-radius: 9999px;
-  padding: 0.4rem 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.btn-logout:hover {
-  background: #db2777;
-  transform: scale(1.05);
-}
-
-/* ===== BOTÓN DARK MODE ===== */
-.btn-darkmode {
-  background: none;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-radius: 9999px;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dark .btn-darkmode {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fcd34d;
-}
-
-.btn-darkmode:hover {
-  transform: rotate(15deg);
-}
-
-/* ===== HAMBURGER MENU ===== */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 26px;
-  height: 20px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
-}
-
-.bar {
-  height: 3px;
-  width: 100%;
-  background-color: #374151;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.dark .bar {
-  background-color: #f3f4f6;
-}
-
-.menu-toggle.open .bar:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-.menu-toggle.open .bar:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .menu {
-    position: absolute;
-    top: 64px;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-    max-height: 0;
-    overflow: hidden;
+/* === Animación === */
+@keyframes slideDown {
+  from {
     opacity: 0;
+    transform: translateY(-10px);
   }
-
-  .menu-open {
-    max-height: 300px;
+  to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
   }
 
-  .menu-toggle {
-    display: flex;
+  .nav-menu-button {
+    display: inline-block;
   }
 
-  .dark .menu {
-    background: rgba(17, 24, 39, 0.95);
+  .nav-top {
+    justify-content: space-between;
   }
 }

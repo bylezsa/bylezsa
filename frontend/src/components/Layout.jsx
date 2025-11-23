@@ -5,42 +5,40 @@ import Footer from './Footer';
 import PromoBanner from './PromoBanner';
 import HelpChatButton from './HelpChatButton';
 
-import '../styles/colors.css';
 import '../styles/globals.css';
 
 export default function Layout({ children }) {
   const [dark, setDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      return (
-        localStorage.getItem('theme') === 'dark' ||
-        (window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
-      );
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) return storedTheme === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
     return false;
   });
 
+  // Escucha cambios del sistema (ej: usuario cambia tema del SO)
   useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => setDark(e.matches);
+    mq.addEventListener('change', handleChange);
+    return () => mq.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }, [dark]);
 
   return (
-    <div className="layout">
+    <div className={`layout ${dark ? 'dark' : 'light'}`}>
       <PromoBanner />
 
       <Navbar dark={dark} setDark={setDark} />
 
       <MiniCart />
 
-      <main className="main-container">
-        {children}
-      </main>
+      <main className="main-container">{children}</main>
 
       <HelpChatButton />
 

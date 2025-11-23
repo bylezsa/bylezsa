@@ -1,8 +1,8 @@
 // src/context/CartContext.jsx
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { formatCurrencyCUP } from '../utils/format';
-import api from '../utils/api';
+import { formatCurrencyCUP } from '../services/format';
+import api from '../services/api';
 
 const CartContext = createContext();
 

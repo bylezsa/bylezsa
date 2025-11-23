@@ -8,7 +8,7 @@ import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import App from './App.jsx';
-import './index.css'; // asegúrate de tener clases dark/light
+import './styles/globals.css';
 
 function RootApp() {
   const [dark, setDark] = useState(() => {

@@ -1,14 +1,30 @@
 :root {
-  --color-primary: #6A1F1F;    /* Borgoña – Pasión Sofisticada */
-  --color-secondary: #D8C3A5;  /* Beige – Equilibrio y Suavidad */
-  --color-light: #F5F1CA;      /* Marfil – Limpieza Visual */
-  --color-dark: #1E1E1E;
-  --color-text: #2B2B2B;
-  --color-bg: #FFFDF8;
-}
+  /* --- BRAND COLORS (BYLEZSA—extraídos del logo) --- */
+  --bz-primary: #e75aa5;      /* rosa fucsia principal */
+  --bz-primary-dark: #c44487; /* versión más profunda */
+  --bz-secondary: #cda86c;    /* dorado/champaña suave */
+  --bz-accent: #7e4a93;       /* violeta elegante */
+  
+  /* --- NEUTRALS --- */
+  --bz-black: #1a1a1a;
+  --bz-gray-900: #2a2a2a;
+  --bz-gray-700: #555555;
+  --bz-gray-500: #999999;
+  --bz-gray-300: #d9d9d9;
+  --bz-gray-100: #f4f4f4;
+  --bz-white: #ffffff;
 
-.dark {
-  --color-primary: #D8C3A5;
-  --color-bg: #1A1A1A;
-  --color-text: #EAEAEA;
+  /* --- STATE COLORS --- */
+  --bz-success: #4caf50;
+  --bz-warning: #ffb300;
+  --bz-error: #e53935;
+
+  /* --- SHADOWS --- */
+  --bz-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --bz-shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+  /* --- COMPONENT RADII --- */
+  --bz-radius-sm: 6px;
+  --bz-radius-md: 10px;
+  --bz-radius-lg: 18px;
 }
