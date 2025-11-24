@@ -1,16 +1,19 @@
+import "../styles/CategoryFilter.css";
+
 export default function CategoryFilter({ categories, selected, onSelect }) {
   return (
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div className="category-filter">
       <button
-        className={`px-3 py-1 rounded ${!selected ? 'bg-pink-600 text-white' : 'bg-gray-100 text-gray-700'}`}
-        onClick={() => onSelect('')}
+        className={`filter-btn ${!selected ? "active" : ""}`}
+        onClick={() => onSelect("")}
       >
         Todas
       </button>
-      {categories.map(cat => (
+
+      {categories.map((cat) => (
         <button
           key={cat.id}
-          className={`px-3 py-1 rounded ${selected === cat.id ? 'bg-pink-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+          className={`filter-btn ${selected === cat.id ? "active" : ""}`}
           onClick={() => onSelect(cat.id)}
         >
           {cat.name}

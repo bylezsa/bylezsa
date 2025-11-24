@@ -1,0 +1,125 @@
+.pcard {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  transition: 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+  border-color: #ffd0e0;
+}
+
+/* Imagen */
+.pcard-img-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.pcard-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.pcard:hover .pcard-img {
+  transform: scale(1.05);
+}
+
+/* Wishlist */
+.pcard-wish {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.pcard-wish svg {
+  width: 22px;
+  height: 22px;
+  stroke: #aaa;
+  fill: none;
+}
+
+.pcard-wish:hover svg {
+  stroke: #e91e63;
+}
+
+.pcard-wish.active svg {
+  fill: #e91e63;
+  stroke: #e91e63;
+}
+
+/* Info */
+.pcard-info {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pcard-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.pcard-desc {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+  min-height: 38px;
+}
+
+/* Footer */
+.pcard-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pcard-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e91e63;
+}
+
+/* Botón */
+.pcard-add {
+  background: #e91e63;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.pcard-add:hover {
+  background: #d41655;
+}
+
+.pcard-add.added {
+  background: #4bb543;
+}

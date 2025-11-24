@@ -1,0 +1,46 @@
+/* ==========================================
+   CATEGORY SLIDER — Apple Style Premium
+   ========================================== */
+
+.category-bar-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 10px 0;
+  position: relative;
+}
+
+/* Slider horizontal */
+.category-slider {
+  display: flex;
+  gap: 28px;
+  white-space: nowrap;
+  padding-left: 20px;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Items */
+.category-item {
+  font-size: 15px;
+  color: #333;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: 0.25s ease;
+}
+
+.category-item:hover {
+  background: #f5f5f5;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Touch friendly */
+.category-item:active {
+  transform: scale(0.97);
+}

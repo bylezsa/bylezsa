@@ -1,0 +1,144 @@
+.fc-slider-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 45px;
+  padding: 0 16px;
+}
+
+.fc-slider-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+/* Contenedor tipo slider */
+.fc-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 14px;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+
+  /* oculta scroll en navegadores */
+  scrollbar-width: none;
+}
+.fc-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Item */
+.fc-slide-item {
+  min-width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.fc-slide-item:hover {
+  background: #fff3fa;
+  border-color: #f9a8d4;
+  box-shadow: 0 6px 22px rgba(255, 0, 180, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Icono */
+.fc-slide-icon {
+  width: 52px;
+  height: 52px;
+  background: #fce7f3;
+  color: #d63384;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+  transition: 0.25s ease;
+}
+
+.fc-slide-item:hover .fc-slide-icon {
+  background: #f9d7eb;
+  transform: scale(1.1);
+}
+
+/* Nombre */
+.fc-slide-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  text-align: center;
+}
+
+.fc-slide-item:hover .fc-slide-name {
+  color: #d63384;
+}
+
+/* Skeleton */
+.fc-skeleton {
+  min-width: 120px;
+  height: 120px;
+  background: #f2f2f2;
+  border-radius: 18px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+@media (max-width: 600px) {
+  .fc-slider-section {
+    margin-bottom: 30px;
+  }
+
+  .fc-slider-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .fc-slide-item {
+    min-width: 100px;
+    height: 100px;
+  }
+
+  .fc-slide-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .fc-slide-name {
+    font-size: 12px;
+  }
+}
+.fc-slide-item {
+  min-width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  text-decoration: none;
+  transition: 0.25s ease;
+}

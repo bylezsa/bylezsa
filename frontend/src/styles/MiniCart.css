@@ -1,0 +1,130 @@
+.mini-cart-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón del carrito */
+.mini-cart-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.mini-cart-button:hover {
+  background: #f7f7f7;
+  transform: translateY(-2px);
+}
+
+.cart-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Badge de cantidad */
+.cart-badge {
+  background: #ff3b5c;
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(255, 0, 90, 0.3);
+}
+
+/* Dropdown */
+.mini-cart-dropdown {
+  position: absolute;
+  right: 0;
+  width: 290px;
+  margin-top: 10px;
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.1);
+  animation: fadeSlide 0.25s ease forwards;
+  z-index: 50;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Lista */
+.mini-cart-list {
+  max-height: 220px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mini-cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.mini-cart-item:last-child {
+  border-bottom: none;
+}
+
+.mini-cart-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.mini-cart-item-price {
+  font-size: 13px;
+  color: #888;
+}
+
+.mini-cart-item-total {
+  font-weight: 600;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Footer del carrito */
+.mini-cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.mini-cart-total {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.mini-cart-pay-btn {
+  padding: 6px 14px;
+  background: #28a745;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.mini-cart-pay-btn:hover {
+  background: #1f8b3a;
+  transform: translateY(-2px);
+}

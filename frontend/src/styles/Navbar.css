@@ -1,187 +1,184 @@
-/* === Estructura general === */
-.navbar {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--nav-bg);
-  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+/* ===============================
+   NAVBAR APPLE STYLE — CLEAN & PRO
+   =============================== */
+
+:root {
+  --nav-height: 80px;
+  --nav-height-shrink: 60px;
+
+  --bg-blur: rgba(255, 255, 255, 0.55);
+  --border-light: rgba(0, 0, 0, 0.08);
+
+  --text: #111;
+  --text-light: #555;
+
+  --primary: #111;        /* Negro elegante Apple */
+  --transition: 0.25s ease;
 }
 
-/* === Primera barra (links + botones) === */
-.nav-top {
+/* ===== HEADER ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-blur);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 1000;
+  transition: height var(--transition), padding var(--transition), background var(--transition);
 }
 
+.navbar.shrink {
+  height: var(--nav-height-shrink);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* ===== INNER WRAPPER ===== */
+.nav-inner {
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== LOGO ===== */
+.nav-logo img {
+  height: 40px;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.navbar.shrink .nav-logo img {
+  height: 32px;
+}
+
+/* ===== DESKTOP NAV ===== */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 22px;
 }
 
-/* === Links === */
 .nav-link {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-color);
+  font-size: 15px;
+  color: var(--text-light);
   text-decoration: none;
-  transition: color 0.2s ease;
+  padding: 8px 5px;
   position: relative;
+  transition: var(--transition);
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
+  color: var(--text);
 }
 
 .nav-link.active {
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-/* === Badge de carrito === */
-.cart-badge {
-  background: var(--primary-color);
-  color: #fff;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  padding: 0 6px;
-  margin-left: 4px;
-}
-
-/* === Botones === */
-.nav-button {
-  border: 1px solid var(--primary-color);
-  background: transparent;
-  color: var(--primary-color);
-  border-radius: 9999px;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.9rem;
+  color: var(--primary);
   font-weight: 500;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* Badge estilo Apple */
+.badge {
+  background: var(--primary);
+  color: white;
+  padding: 2px 7px;
+  font-size: 12px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+
+/* ===== BUTTONS AUTH ===== */
+.btn-auth,
+.btn-logout {
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: var(--transition);
+  border: 1px solid var(--border-light);
+  background: white;
+  color: var(--text);
 }
 
-.nav-button:hover {
-  background: var(--primary-color);
-  color: #fff;
+.btn-auth:hover,
+.btn-logout:hover {
+  background: #f2f2f2;
 }
 
-/* Secundario */
-.nav-button.secondary {
-  border-color: var(--secondary-color);
-  color: var(--secondary-color);
-}
-.nav-button.secondary:hover {
-  background: var(--secondary-color);
-  color: #fff;
+.btn-auth.secondary {
+  background: transparent;
 }
 
-/* Logout */
-.nav-button.logout {
-  border-color: var(--danger-color);
-  color: var(--danger-color);
-}
-.nav-button.logout:hover {
-  background: var(--danger-color);
-  color: #fff;
+.btn-auth.secondary:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
-/* === Botón menú hamburguesa (solo móvil) === */
-.nav-menu-button {
-  font-size: 1.4rem;
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
   background: none;
   border: none;
-  color: var(--text-color);
   cursor: pointer;
-  margin-left: 0.75rem;
-  display: none;
-}
-.nav-menu-button:hover {
-  color: var(--primary-color);
 }
 
-/* === Segunda barra (logo centrado) === */
-.nav-bottom {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.3rem 0;
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: #111;
+  transition: var(--transition);
 }
 
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-decoration: none;
-}
-
-.nav-logo-mark {
-  background: var(--primary-color);
-  color: #fff;
-  font-weight: 700;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  padding: 0.45rem 0.7rem;
-}
-
-.nav-logo-text {
-  font-weight: 600;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-  color: var(--text-color);
-}
-
-/* === Menú móvil desplegable === */
+/* ===== MOBILE MENU ===== */
 .nav-mobile {
+  width: 100%;
+  padding: 18px 25px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: var(--nav-bg);
-  border-top: 1px solid var(--border-color);
-  padding: 1rem 0;
-  animation: slideDown 0.25s ease;
+  gap: 15px;
 }
 
-.nav-link-mobile {
-  color: var(--text-color);
+.nav-mobile-link {
+  font-size: 17px;
+  color: var(--text);
   text-decoration: none;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  transition: color 0.2s ease;
+  padding: 10px 5px;
+  transition: var(--transition);
 }
 
-.nav-link-mobile:hover {
-  color: var(--primary-color);
+.nav-mobile-link:hover {
+  opacity: 0.7;
 }
 
-/* === Animación === */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
+/* ===== RESPONSIVE ===== */
+@media (max-width: 850px) {
   .nav-links {
     display: none;
   }
 
-  .nav-menu-button {
-    display: inline-block;
-  }
-
-  .nav-top {
-    justify-content: space-between;
+  .hamburger {
+    display: flex;
   }
 }

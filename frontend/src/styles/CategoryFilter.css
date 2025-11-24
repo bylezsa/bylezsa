@@ -1,0 +1,41 @@
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Botones base */
+.filter-btn {
+  padding: 8px 16px;
+  background: #f3f3f3;
+  color: #444;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+  backdrop-filter: blur(6px);
+}
+
+/* Hover elegante estilo Apple */
+.filter-btn:hover {
+  background: #ffffff;
+  border-color: #ff82b2;
+  box-shadow: 0 2px 6px rgba(255, 0, 110, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Botón activo */
+.filter-btn.active {
+  background: #ff4f8b;
+  color: white;
+  border-color: #ff4f8b;
+  box-shadow: 0 3px 10px rgba(255, 0, 130, 0.35);
+}
+
+/* Animación suave al presionar */
+.filter-btn:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,76 @@
+.searchbar-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Input */
+.searchbar-input {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 380px;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchbar-input:focus {
+  outline: none;
+  border-color: #ff5ca8;
+  box-shadow: 0 0 0 3px rgba(255, 92, 168, 0.2);
+}
+
+/* Botón favoritos */
+.favs-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  color: #d63384;
+  border: 1px solid #f7b9d3;
+  transition: all 0.25s ease;
+}
+
+.favs-btn:hover {
+  background: #ffe5f1;
+}
+
+/* Estado activo */
+.favs-btn.active {
+  background: #d63384;
+  color: #fff;
+  border-color: #d63384;
+  box-shadow: 0 3px 10px rgba(214, 51, 132, 0.3);
+}
+
+/* Icono del corazón */
+.heart-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  transition: fill 0.2s ease;
+}
+
+.heart-icon.filled {
+  fill: #ffffff;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .searchbar-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .favs-btn {
+    justify-content: center;
+  }
+}

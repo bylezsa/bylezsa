@@ -1,93 +1,118 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { useCart } from '../context/CartContext';
-import { toast } from 'react-toastify';
-import '../styles/Navbar.css';
+import { useState, useEffect, useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import "../styles/Navbar.css";
 
-export default function Navbar({ dark, setDark }) {
+export default function Navbar() {
   const { user, logout } = useAuth();
-  const { cart } = useCart() || { cart: [] };
-  const [open, setOpen] = useState(false);
+  const { cart = [] } = useCart();
   const location = useLocation();
 
-  const handleLogout = () => {
-    logout();
-    toast.success('Sesión cerrada correctamente');
-  };
+  const [open, setOpen] = useState(false);
+  const [shrink, setShrink] = useState(false);
 
-  const navLinks = [
-    { to: '/', label: 'Inicio' },
-    { to: '/cart', label: 'Carrito' },
-    { to: '/profile', label: 'Perfil', auth: true },
-  ];
+  // === Detecta scroll para shrink ===
+  useEffect(() => {
+    const onScroll = () => setShrink(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // === Links del menú ===
+  const navLinks = useMemo(
+    () => [
+      { to: "/", label: "Inicio" },
+      { to: "/cart", label: "Carrito", icon: "🛒", badge: cart.length },
+      { to: "/profile", label: "Perfil", icon: "👤", auth: true },
+    ],
+    [cart.length]
+  );
+
+  // === Renderiza enlaces (desktop / mobile) ===
+  const renderLinks = (className, onClick) =>
+    navLinks
+      .filter((l) => !l.auth || user)
+      .map((l) => (
+        <Link
+          key={l.to}
+          to={l.to}
+          className={`${className} ${
+            location.pathname === l.to ? "active" : ""
+          }`}
+          onClick={onClick}
+        >
+          {l.icon && <span className="icon">{l.icon}</span>}
+          {l.label}
+          {l.badge > 0 && <span className="badge">{l.badge}</span>}
+        </Link>
+      ));
 
   return (
-    <header className="navbar">
-     {/* === Primera barra (links y menú) === */}
-      <div className="nav-top">
-        <div className="nav-links">
-          {navLinks.map((link) => {
-            if ((link.auth && !user) || (link.guest && user)) return null;
-            return (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`nav-link ${location.pathname === link.to ? 'active' : ''}`}
-              >
-                {link.label}
-                {link.to === '/cart' && cart.length > 0 && (
-                  <span className="cart-badge">{cart.length}</span>
-                )}
-              </Link>
-            );
-          })}
+    <header className={`navbar ${shrink ? "shrink" : ""}`}>
+      <div className="nav-inner">
+        
+        {/* === Logo === */}
+        <Link to="/" className="nav-logo">
+          <img src="/logo.png" alt="Logo" />
+        </Link>
+
+        {/* === Desktop menu === */}
+        <nav className="nav-links">
+          {renderLinks("nav-link")}
           {user ? (
-            <button onClick={handleLogout} className="nav-button logout">Salir</button>
+            <button className="btn-logout" onClick={logout}>Salir</button>
           ) : (
             <>
-              <Link to="/login" className="nav-button">Ingresar</Link>
-              <Link to="/register" className="nav-button secondary">Registrarse</Link>
+              <Link to="/login" className="btn-auth">Ingresar</Link>
+              <Link to="/register" className="btn-auth secondary">
+                Registrarse
+              </Link>
             </>
           )}
+        </nav>
 
-          <button onClick={() => setOpen(!open)} className="nav-menu-button">
-            ☰
-          </button>
-        </div>
-
+        {/* === Hamburger === */}
+        <button className="hamburger" onClick={() => setOpen(!open)}>
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
-
-      {/* === Segunda barra (logo centrado) === */}
-      <div className="nav-bottom">
-        <Link to="/" className="nav-logo">
-          <span className="nav-logo-mark">AA</span>
-          <span className="nav-logo-text">Store</span>
-        </Link>
-      </div>
-
-      {/* Menú móvil */}
+      {/* === Mobile menu === */}
       {open && (
         <div className="nav-mobile">
-          {navLinks.map((link) => {
-            if ((link.auth && !user) || (link.guest && user)) return null;
-            return (
-              <Link key={link.to} to={link.to} className="nav-link-mobile">
-                {link.label}
-              </Link>
-            );
-          })}
+          {renderLinks("nav-mobile-link", () => setOpen(false))}
+
           {user ? (
-            <button onClick={handleLogout} className="nav-link-mobile">Salir</button>
+            <button
+              className="nav-mobile-link"
+              onClick={() => {
+                logout();
+                setOpen(false);
+              }}
+            >
+              Salir
+            </button>
           ) : (
             <>
-              <Link to="/login" className="nav-link-mobile">Ingresar</Link>
-              <Link to="/register" className="nav-link-mobile">Registrarse</Link>
+              <Link
+                to="/login"
+                className="nav-mobile-link"
+                onClick={() => setOpen(false)}
+              >
+                Ingresar
+              </Link>
+              <Link
+                to="/register"
+                className="nav-mobile-link"
+                onClick={() => setOpen(false)}
+              >
+                Registrarse
+              </Link>
             </>
           )}
         </div>
       )}
-    </header>
+    </header> 
   );
 }

@@ -5,7 +5,7 @@ import Footer from './Footer';
 import PromoBanner from './PromoBanner';
 import HelpChatButton from './HelpChatButton';
 
-import '../styles/globals.css';
+import '../styles/layout.css';
 
 export default function Layout({ children }) {
   const [dark, setDark] = useState(() => {
@@ -17,7 +17,6 @@ export default function Layout({ children }) {
     return false;
   });
 
-  // Escucha cambios del sistema (ej: usuario cambia tema del SO)
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => setDark(e.matches);
@@ -33,15 +32,14 @@ export default function Layout({ children }) {
   return (
     <div className={`layout ${dark ? 'dark' : 'light'}`}>
       <PromoBanner />
-
       <Navbar dark={dark} setDark={setDark} />
-
       <MiniCart />
 
-      <main className="main-container">{children}</main>
+      <main className="main-container">
+        {children}
+      </main>
 
       <HelpChatButton />
-
       <Footer />
     </div>
   );

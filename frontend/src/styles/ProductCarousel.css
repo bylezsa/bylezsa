@@ -1,0 +1,89 @@
+.carousel-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto 40px auto;
+  padding: 0 16px;
+}
+
+.carousel-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .carousel-title {
+    font-size: 28px;
+  }
+}
+
+.emoji-hot {
+  font-size: 26px;
+  color: #e11d48;
+}
+
+/* Contenedor scroll */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Carrusel horizontal */
+.carousel-scroll {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #f9a8d4 transparent;
+}
+
+.carousel-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-scroll::-webkit-scrollbar-thumb {
+  background: #f9a8d4;
+  border-radius: 12px;
+}
+
+.carousel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Slide */
+.product-slide {
+  width: 240px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+/* Skeleton Loading */
+.product-skeleton {
+  width: 240px;
+  height: 320px;
+  background: #e5e7eb;
+  border-radius: 16px;
+  animation: pulse 1.4s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.65;
+  }
+}
